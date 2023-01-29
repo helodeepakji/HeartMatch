@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Montserrat:600");
+        @import url("https://fonts.googleapis.com/css?family=Montserrat:800");
+        @import url("https://fonts.googleapis.com/css?family=Montserrat");
+
+
+        body {
+        font-family: "Montserrat", sans-serif;
+        background: linear-gradient(270deg, #ffead1, #ffb6bd, #e0b5ff);
+        background-size: 150% 150%;
+        animation: backgroundAnimation 10s ease infinite;
+        }
+
+        .client {
+            margin: 100px auto;
+            animation: loadclient 0.6s ease-in-out;
+            animation-fill-mode: both;
+            font-size: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            max-height: 400px;
+            max-width: 650px;
+        }
+
+.client-bg {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 30px 50px -20px rgba(14, 0, 47, 0.21);
+  width: calc(100% - 75px);
+  height: calc(100% - 110px);
+  z-index: -1;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+} 
+
+        .client-image {
+            height: fit-content;
+            padding: 10px;
+            animation: loadclientImage 1s ease-in-out 0.5s;
+            animation-fill-mode: both;
+            border-radius: 10px;
+            box-shadow: 0 25px 45px -20px rgba(255, 0, 47, 0.55),
+                inset 0 0px 120px rgba(255, 0, 47, 0.75);
+            flex: none;
+        }
+
+        .client-image::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            mix-blend-mode: screen;
+        }
+
+        .client-image img {
+          object-fit: cover;
+          width: 250px;
+          height: 250px;
+        }
+
+
+        .client-info {
+            margin-top: 120px;
+            padding: 7% 3% 2% 3%;
+            position: relative;
+        }
+
+.client-info h1 {
+  font-size: 30px;
+  font-weight: 800;
+  margin: 0.7rem;
+  position: absolute;
+  animation-fill-mode: both;
+}
+
+        h1.first-name {
+            animation: titleEffect 1s cubic-bezier(0,0.2,0.4,1);
+            top: -45px;
+            left: 5px;
+        } 
+
+        h1.second-name {
+            animation: titleEffect 1s cubic-bezier(0,0,0.3,1);
+            top: -5px;
+            left: 5px;
+            font-size: 18px;
+            color: gray;
+        }
+
+.client-info h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.2rem;
+  margin-top: 0;
+  margin-bottom: 5%;
+}
+
+.social-media-icons a,
+.client-info h2 {
+  color: #f63d47;
+}
+
+.client-info p {
+  line-height: 1.5rem;
+}
+
+.social-media-icons {
+  display: flex;
+}
+
+.social-media-icons a {
+  margin-top: 7%;
+  font-size: 1.2rem;
+  flex: auto;
+  text-align: center;
+}
+
+
+.social-media-icons a {
+  transition: text-shadow 0.5s ease;
+}
+
+.social-media-icons a:hover {
+  text-shadow: 0px 5px 15px rgba(255, 0, 47, 0.45);
+}
+
+.icon {
+  background: transparent no-repeat center;
+  background-size: contain;
+  background-origin: content-box;
+  width: 60px;
+  height: 60px;
+  padding: 15px;
+  border: none;
+  transition: transform 0.5s ease;
+}
+
+.icon:hover {
+  transform: scale(0.9);
+}
+
+.right {
+  transform: rotate(180deg);
+}
+
+.right:hover {
+  transform: scale(0.9) rotate(180deg);
+}
+
+.close {
+  background-image: url("https://zephyo.github.io/22Days/code/3/graphics/close.svg");
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+
+@media only screen and (max-width: 750px) {
+
+  .client {
+    max-height: 350px;
+    max-width: 500px;
+  }
+
+  .client-bg {
+    width: calc(100% - 100px);
+    height: calc(100% - 75px);
+  }
+  
+  .client-info {
+    margin-top: 70px;
+  }
+
+  .client-image img {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+    .client-info {
+        margin-top: 0;
+        padding: 20px;
+        position: relative;
+    }
+    
+  .social-media-icons {
+    display: none;
+  }
+  .container {
+    height: 86%;
+    flex-direction: column;
+  }
+  .client-image {
+    width: fit-content;
+  }
+  .client-bg {
+    width: 100%;
+  }
+  h1.second-name {
+    left: 66%;
+    top: -50%;
+  }
+  h1.first-name {
+    left: 30%;
+    top: 0%;
+  }
+}
+
+@keyframes backgroundAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes loadclient {
+ from{
+    transform: translateY(100px);
+    opacity: 0;
+  }
+ to {
+     transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes loadclientImage {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+ to {
+     transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes titleEffect {
+ from {
+   opacity:0;
+     transform: translateX(-75px);
+  }
+  to {
+     transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+    </style>
+</head>
+<body>
+    {%include "layout/navbar.html"%}
+    
+    {% for item in data %}
+    <main class="client">
+      <div class="client-bg"></div>
+      <section class="container">
+          <aside class="client-image">
+              <img src="{{item.image}}" width="350px" height="350px" srcset="">
+          </aside>
+          <section class="client-info">
+          <h1 class="first-name">{{item.name}}</h1>
+          <h1 class="second-name">{{item.occupation}}</h1>
+          
+          <h2>ABOUT</h2>
+          <p>
+              hello hello, I'm angela, artist and developer 🌼 student at stanford; intern at zynga 🌱 happy to be here! 🌿 let's code the best we can!
+          </p>
+
+          <aside class="social-media-icons" id="{{item.username}}">
+              <a href="https://twitter.com/zephybite" target="_blank">
+                <i class="fab fa-twitter"></i>
+            </a>
+              <a href="https://codepen.io/zephyo" target="_blank">
+                  <i class="fab fa-codepen"></i>
+              </a>
+              <a class="addfriend" id="add{{item.username}}" aria-hidden="{{item.username}}">
+                <i class="fa fa-user-plus" aria-hidden="true"></i>
+              </a>
+              {% for friend in addfriend %}
+                {% if item.username == friend.touser %}
+                  <style>
+                    #add{{item.username}}{
+                      display: none;
+                    }
+                  </style>
+                  {% if friend.request %}
+                    <a href="chat/{{friend.room}}" target="_blank">
+                      <i class="fa fa-comment" aria-hidden="true"></i>
+                    </a>
+                  {% else %}
+                    <a class="removefriend" aria-hidden="{{item.username}}">
+                      <i class="fa fa-clock" aria-hidden="true"></i>
+                    </a>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+          </aside>
+          </section>
+      </section>
+    </main>
+    {% endfor %}
+    {%include "layout/footer.html"%}
+</body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $(".addfriend").click(function(){
+        var username = $(this).attr('aria-hidden');
+        $.ajax({
+            url: "{% url 'addFriend' %}",
+            data: {'username' : username},
+            dataType: "json", 
+            success: function(result) {
+              $("#"+username).append(`<a class="removefriend" aria-hidden="{{item.username}}">
+                <i class="fa fa-clock" aria-hidden="true"></i>
+              </a>`);
+              $("#add"+username).remove();
+          }
+        });
+      });
+    });
+  </script>
+</html>

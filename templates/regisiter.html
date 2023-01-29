@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* all */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --main-blue: #71b7e6;
+  --main-purple: #ab0909;
+  --main-grey: #ccc;
+  --sub-grey: #d9d9d9;
+}
+
+    body{
+        background-image: url('static/regisiter.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .boxi{
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .regisiterform {
+        margin: 100px;
+        max-width: 700px;
+        width: 100%;
+        background: #fff;
+        padding: 25px 30px;
+        border-radius: 5px;
+    }
+
+    .regisiterform .title {
+        font-size: 25px;
+        font-weight: 500;
+        position: relative;
+    }
+
+    .regisiterform .title::before {
+        content: "";
+        position: absolute;
+        height: 3.5px;
+        width: 30px;
+        background: linear-gradient(62deg, #000000, #8d0e23);
+        left: 0;
+        bottom: 0;
+    }
+
+.regisiterform form .user__details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 0 12px 0;
+}
+/* inside the form user details */
+form .user__details .input__box {
+  width: calc(100% / 2 - 20px);
+  margin-bottom: 15px;
+}
+
+.user__details .input__box .details {
+  font-weight: 500;
+  margin-bottom: 5px;
+  display: block;
+}
+    .user__details .input__box input,
+    .user__details .input__box select{
+        height: 45px;
+        width: 100%;
+        outline: none;
+        border-radius: 5px;
+        border: 1px solid var(--main-grey);
+        padding-left: 15px;
+        font-size: 16px;
+        border-bottom-width: 2px;
+        transition: all 0.3s ease;
+    }
+
+.user__details .input__box input:focus,
+.user__details .input__box input:valid {
+  border-color: #ab0909;
+}
+
+/* inside the form gender details */
+
+form .gender__title {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+form .category {
+  display: flex;
+  width: 80%;
+  margin: 15px 0;
+  justify-content: space-around;
+}
+ .category label {
+  display: flex;
+  align-items: center;
+}
+ .category .dot {
+  height: 18px;
+  width: 18px;
+  background: var(--sub-grey);
+  border-radius: 50%;
+  margin: 10px;
+  border: 5px solid transparent;
+  transition: all 0.3s ease;
+}
+
+#dot-1:checked ~ .category .one,
+#dot-2:checked ~ .category .two,
+#dot-3:checked ~ .category .three {
+  border-color: var(--sub-grey);
+  background: #ab0909;
+}
+
+form input[type="radio"] {
+  display: none;
+}
+
+/* submit button */
+form .button {
+  height: 45px;
+  margin: 30px 50px;
+}
+
+
+form .button input {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+        background: linear-gradient(62deg, #000000, #8d0e23);
+        transition: all 0.3s ease;
+    }
+    
+    form .button input:hover {
+        background: linear-gradient(272deg, #f30000, #8d0e23);
+    }
+    
+@media only screen and (max-width: 584px) {
+    .regisiterform {
+        max-width: 100%;
+        margin: 100px 15px;
+    }
+    
+    form .user__details .input__box {
+        margin-bottom: 15px;
+        width: 100%;
+    }
+    
+    form .category {
+        width: 100%;
+    }
+    
+    form .button {
+        width: 100%;
+        margin: 0;
+    }
+    
+    {
+        width: 100%;
+    }
+    
+    .user__details::-webkit-scrollbar {
+        width: 0;
+    }
+}
+
+.typimg::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+.typimg::before {
+    content: 'Select Profile image';
+    display: inline-block;
+    border-radius: 3px;
+    padding: 10px 50px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+  }
+
+.hidden{
+    display: none !important;
+}
+
+</style>
+</head>
+<body>
+    {% include "layout/navbar.html" %}
+    <div class="boxi">
+        <div class="regisiterform">
+            <div class="title">Registration</div>
+            {% if status %}
+                <p style="color:red">{{status}}</p>
+            {% endif %}
+            <form action="regisiter" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="user__details" id="slide1">
+                    <div class="input__box">
+                        <span class="details">Full Name</span>
+                        <input type="text" name="name" placeholder="Deepak Morya" required>
+                    </div>
+                    <div class="input__box">
+                        <span class="details">Username</span>
+                        <input type="text" name="username" placeholder="helodeepakji" required>
+                    </div>
+                    <div class="input__box">
+                        <span class="details">Email</span>
+                        <input type="email" name="email" placeholder="johnsmith@hotmail.com" required>
+                    </div>
+                    <div class="input__box">
+                        <span class="details">Phone Number</span>
+                        <input type="number" name="phone" placeholder="012-345-6789" required>
+                    </div>
+                    <div class="input__box">
+                        <span class="details">Age</span>
+                        <input type="Number" name="age" placeholder="age" required>
+                    </div>
+                    <div class="input__box">
+                        <span class="details" name="gender">Gender</span>
+                        <input type="radio" name="gender" value="Male" id="dot-1">
+                        <input type="radio" name="gender" value="Female" id="dot-2">
+                        <div class="category">
+                            <label for="dot-1">
+                                <span class="dot one"></span>
+                                <span>Male</span>
+                            </label>
+                            <label for="dot-2">
+                                <span class="dot two"></span>
+                                <span>Female</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input__box">
+                        <span class="details">Password</span>
+                        <input type="password" name="password" placeholder="********" required>
+                    </div>
+                    <div class="input__box">
+                        <span class="details">Confirm Password</span>
+                        <input type="password" name="cpassword" placeholder="********" required>
+                    </div>
+                </div>
+                <div class="user__details hidden" id="slide2">
+                    <div class="input__box">
+                        <span class="details">Occupation</span>
+                        <input type="text" name="occupation" placeholder="Occupation" required>
+                    </div>
+                    <div class="input__box">
+                        <span class="details">Salary</span>
+                        <input type="Number" name="salary" placeholder="salary" required>
+                    </div>
+                    <div class="input__box">
+                        <span class="details">Education</span>
+                        <input type="text" name="education" placeholder="johnWC98" required>
+                    </div>
+                    <div class="input__box">
+                        <span class="details">Profile </span>
+                        <input type="file" name="profile" class="typimg" required>
+                    </div>
+                    <div class="input__box">
+                        <span class="details">City</span>
+                        <input type="text" name="city" placeholder="Ghaziabad" required>
+                    </div>
+                    <div class="input__box">
+                        <span class="details">State</span>
+                        <select name="state" id="state">
+                            <option value="">Select State</option>
+                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                            <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                            <option value="Assam">Assam</option>
+                            <option value="Bihar">Bihar</option>
+                            <option value="Chandigarh">Chandigarh</option>
+                            <option value="Chhattisgarh">Chhattisgarh</option>
+                            <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                            <option value="Daman and Diu">Daman and Diu</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Lakshadweep">Lakshadweep</option>
+                            <option value="Puducherry">Puducherry</option>
+                            <option value="Goa">Goa</option>
+                            <option value="Gujarat">Gujarat</option>
+                            <option value="Haryana">Haryana</option>
+                            <option value="Himachal Pradesh">Himachal Pradesh</option>
+                            <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                            <option value="Jharkhand">Jharkhand</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="Madhya Pradesh">Madhya Pradesh</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Manipur">Manipur</option>
+                            <option value="Meghalaya">Meghalaya</option>
+                            <option value="Mizoram">Mizoram</option>
+                            <option value="Nagaland">Nagaland</option>
+                            <option value="Odisha">Odisha</option>
+                            <option value="Punjab">Punjab</option>
+                            <option value="Rajasthan">Rajasthan</option>
+                            <option value="Sikkim">Sikkim</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="Telangana">Telangana</option>
+                            <option value="Tripura">Tripura</option>
+                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                            <option value="Uttarakhand">Uttarakhand</option>
+                            <option value="West Bengal">West Bengal</option>
+                        </select>
+                    </div>
+                    <div class="input__box">
+                        <span class="details">Reigion</span>
+                        <select name="reigion" id="">
+                            <option value="" default>Select Reigion</option>
+                            <option value="Hindu" default>Hindu</option>
+                            <option value="Islam" default>Islam</option>
+                            <option value="Christian" default>Christian</option>
+                            <option value="Sikhism" default>Sikhism</option>
+                        </select>
+                    </div>
+                    <div class="input__box">
+                        <span class="details">Mothertoug</span>
+                        <select name="mothertoug" id="">
+                            <option value="" default>Select Mothertoug</option>
+                            <option value="Hindi" default>Hindi</option>
+                            <option value="English" default>English</option>
+                            <option value="Bhojpuri" default>Bhojpuri</option>
+                            <option value="Punjabi" default>Punjabi</option>
+                            <option value="Garhwali" default>Garhwali</option>
+                            <option value="Marathi" default>Marathi</option>
+                            <option value="Bangali" default>Bangali</option>
+                            <option value="Odia" default>Odia</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="button">
+                    <input type="submit" id="next" value="Register">
+                </div>
+            </form>
+        </div>
+    </div>
+    {%include "layout/footer.html" %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#next").click(function(){
+                $("#slide1").addClass("hidden");
+                $("#slide2").removeClass("hidden");
+            });
+        });
+    </script>
+</body>
+</html>

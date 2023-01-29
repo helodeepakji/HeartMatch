@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+        main {
+            font-family: "Roboto", sans-serif;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background-image: url('static/login.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            justify-content: space-around;
+            color: white;
+            text-align:center;
+        }
+
+        main .tex{
+            width: 50%;
+            background: #00000024;
+        }
+
+        .wrapper {
+            color: black;
+            width: 300px;
+            height: 450px;
+            padding: 2.1rem 2rem;
+            border-radius: 0.7rem;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            justify-items: center;
+            align-items: center;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        }
+        .wrapper .heading h1 {
+            font-weight: 700;
+            font-size: 2rem;
+        }
+        .wrapper .social {
+            padding: 2.5rem;
+        }
+        .wrapper .social .social-links {
+            text-decoration: none;
+            color: #000;
+            font-size: 1.3rem;
+        }
+        .wrapper .social .social-links > .fa-brands {
+            border: 1px solid #e4e4e4;
+            display: inline-block;
+            border-radius: 60px;
+            padding: 0.5em 0.6em;
+            margin-left: 0.5rem;
+            transition: all 0.5s ease;
+        }
+        .wrapper .social .social-links > .fa-brands:hover {
+            background: #000;
+            color: #fff;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            align-items: center;
+        }
+        .form-group p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            color: #212121;
+            margin-bottom: 0.3rem;
+        }
+        .form-group > input {
+            padding: 0.7rem 0.1rem;
+            margin-bottom: 0.9rem;
+            border: none;
+            width: 100%;
+        }
+        .form-group > input:focus {
+            background: #eee;
+        }
+        .form-group > ::placeholder {
+            background: #eeeeee;
+            padding: 0.7rem 0.2rem;
+            text-transform: capitalize;
+        }
+        .btn {
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+        .btn-forget {
+            color: #212121;
+            margin-bottom: 1rem;
+        }
+        .btn-primary {
+            background: #ff4b2b;
+            padding: 0.6rem 2.4rem;
+            text-transform: uppercase;
+            color: #fff;
+            border-radius: 2rem;
+            font-weight: 700;
+            border: 1px solid #ff4b2b;
+            transition: all 200ms linear;
+        }
+        .btn-primary:hover {
+            background: #fff;
+            color: #ff4b2b;
+            border: 1px solid #ff4b2b;
+        }
+
+        @media screen and (max-width: 650px) {
+            main {
+                flex-direction: column;
+                margin: 60px 0;
+            }
+            main .tex {
+                width: 100%;
+                padding: 20px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    {%include "layout/navbar.html"%}
+    <main>
+        <h1 class="tex">Your search for the perfect match ends here!</h1>
+        <div class="wrapper">
+            <div class="heading">
+                <h1>Login</h1>
+                {% if status %}
+                    <p style="color:red;margin-top: 15px;">{{status}}</p>
+                {% endif %}
+            </div>
+            <div class="social">
+                <a href="#" class="social-links"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="social-links"><i class="fa-brands fa-google"></i></a>
+            </div>
+            <form action="login" class="form-group" method="post">
+                {% csrf_token %}
+                <p class="account-heading">or use your account</p>
+                <input type="text" name="username" placeholder="username" class="email">
+                <input type="password" name="password" placeholder="password" class="passwd">
+                <a href="#" class="btn btn-forget">Forget your password?</a>
+                <a href="regisiter" class="btn btn-forget" style="color:red">New User click here for Signup</a>
+                <a href="#"><button class="btn btn-primary" type="submit">log in</button></a>
+            </form>
+        </div>
+    </main>
+    {%include "layout/footer.html"%}
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url(https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap);
+
+            *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            outline: none;
+            }
+
+            * {
+                font-family: Rubik,sans-serif
+            }
+
+
+
+            .contact{
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                min-height: 100vh;
+                background-image: url('static/contact.jpg');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                overflow: hidden;
+            }
+
+            .contact-title{
+                color: white;
+                font-size: 2.5rem;
+            }
+
+            .contact-form{
+                display: flex;
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+                border: 1px solid #fd5b5d;
+                border-radius: 1rem;
+                box-shadow: rgb(0 0 0 / 99%) 0px 0px 15px 4px;
+                background: white;
+                max-width: 375px;
+                width: 100%;
+            }
+
+            label{
+                display: flex;
+                flex-direction: column;
+                gap: .5rem;
+            }
+
+            label input, label textarea{
+                padding: .75rem;
+                font-size: 1rem;
+                border-radius: .5rem;
+                border: 1px solid #fd5b5d;
+                transition: all .25s ease 0s
+            }
+
+            label textarea{
+                max-width: 100%;
+                max-height: 200px;
+                min-width: 200px;
+                min-height: 100px;
+            }
+
+            .send-btn{
+                background: linear-gradient(90deg, #fd5b5d 0%, #850000 100%);
+                padding: .75rem;
+                font-size: 1rem;
+                font-weight: 600;
+                color: white;
+                border-radius: .5rem;
+                cursor: pointer;
+            }
+
+            label input:hover,
+            label textarea:hover,
+            label input:focus,
+            label textarea:focus{
+                border-color: #ff2d2d;
+                box-shadow: 0 0 0 3px #ff2d2d80;
+            }
+
+            .send-btn:hover, .send-btn:focus{
+                background: linear-gradient(90deg, #602DFF 75%, #170055 100%);
+            }
+
+            @media screen and (max-width: 900px){
+            .contact{
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .contact-title{
+                text-align: center;  
+            }
+        }
+    </style>
+</head>
+<body>
+    {%include "layout/navbar.html"%}
+    <div class="contact">
+        <h2 class="contact-title">
+          Are you want Good Partner?</br>
+          Let go to find out.
+        </h2>
+        {% if submit%}
+        <div class="contact-form">
+          <h1 style="text-align: center;">Thank you for contacting</h1>
+        </div>
+        {% else %}
+        <form action="" method="post" class="contact-form">
+          {% csrf_token %}
+          <label for="name">
+            <span class="input-name">
+              Name:
+            </span>
+            <input type="text" name="name" id="name" class="name" required>
+          </label>
+          <label for="email">
+            <span class="input-name">
+              Email address:
+            </span>
+            <input type="text" name="email" id="email" class="email" required>
+          </label>
+          <label for="email">
+            <span class="input-name">
+              Phone Number:
+            </span>
+            <input type="Number" name="number" id="number" class="email" required>
+          </label>
+          <label for="project-info">
+            <span class="input-name">
+              Tell about your Query:
+            </span>
+            <textarea name="query" id="project-info" class="project-info"></textarea>
+          </label>
+          <button class="btn send-btn">
+            Send
+          </button>
+        </form>
+        {% endif %}
+      </div>
+    {%include "layout/footer.html"%}
+</body>
+</html>

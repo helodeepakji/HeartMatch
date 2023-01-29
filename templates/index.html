@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .mid{
+            background-image: url(static/home.jpg);
+            height: 100vh;
+            margin: 50px 0 0;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            color: white;
+            justify-items: center;
+            font-size: xx-large;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .mid h1 {
+            width: 100%;
+            text-align: center;
+            background: #00000040;
+            padding: 10px;
+        }
+
+        .midnext {
+            background: #951d30;
+            color: white;
+            padding: 20px;
+        }
+
+        .midnext .text{
+            display: grid;
+            justify-items: center;
+        }
+
+        .midnext .searchbox{
+            background: white;  
+            padding: 20px;   
+            width: 700px;      
+            margin: 30px auto;
+        }
+
+        .midnext h2 {
+            font-size: 15px;
+        }
+
+        .searchbox .field {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+
+
+        .searchbox form select {
+            width: 100%;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #80808038;
+        }
+
+        .searchbox .field button {
+            padding: 7px 10px;
+            margin-top: 10px;
+            color: white;
+            background: #fd5b5d;
+            border: none;
+        }
+
+        @media screen and (max-width: 850px) {
+            .midnext .searchbox {
+                width: 650px;
+            }
+        }
+
+        @media screen and (max-width: 700px) {
+            .mid{
+                height: 60vh;
+                font-size: x-large;
+            }
+            .midnext .searchbox {
+                width: 100%;
+            }
+        }
+
+        @media screen and (max-width: 450px) {
+            .mid{
+                font-size: x-large;
+            }
+
+            .searchbox form select {
+                margin: 10px 0;
+            }
+
+            .searchbox .field {
+                flex-direction: column;
+            }
+
+            .midnext .searchbox {
+                width: 100%;
+            }
+        }
+
+    </style>
+    <style>
+        .couple {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 80px 0;
+        }
+          
+          .recipe-preview {
+            width: 120px;
+          }
+          
+          .recipe-title {
+            font-size: 18px;
+            font-weight: bold;
+          }
+          
+          .recipe-card {
+            margin: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            width: 250px;
+            height: 280px;
+            border: 2px solid #80808017;
+            border-top: 4px solid #951d30;
+            transition: transform 500ms;
+            color: #332b2a;
+          }
+
+          a.regi {
+            text-decoration: none;
+            font-size: 20px;
+            padding: 20px;
+            color: white;
+            background: #951d30;
+            border: 2px solid #951d30;
+            margin: 50px 10px 100px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        a.regi:hover{
+            background: white;
+            border: 2px solid #951d30;
+            color: #951d30;
+        }
+
+          .recipe-card:hover {
+            transform: translateY(-25px);
+            box-shadow: 0px 5px 20px 10px #cacaca45;
+          }
+          .recipe-card>:is(img, span, strong) {
+            transform: translateY(-70px);
+            text-align: center;
+            padding: 10px; 
+          }
+          .recipe-card>:is(.rating, .recipe-infos) {
+            transform: translateY(-20px); 
+          }
+          
+    </style>
+</head>
+<body>
+    {% include "layout/navbar.html" %}
+    <section class="mid">
+        <h1>The Best Proof of Love is Trust</h1>
+        {% if user.is_authenticated  %}
+        <a class="regi" href="/findbest">Find Best Match</a>
+        {% else %}
+        <a class="regi" href="/regisiter">REGISITER NOW</a>
+        {% endif %}
+    </section>
+    <section class="midnext">
+        <div class="text">
+            <h1>We Build your dream around you.</h1>
+            <h2>Experience | Excallance | With Perfection</h2>
+        </div>
+        <div class="searchbox">
+            <form action="findbest" method="post">
+                {% csrf_token %}
+                <div class="field">
+                    <select name="mother_tong" id="">
+                        <option value="">Select Mother Tongue</option>
+                        <option value="Hindi">Hindi</option>
+                        <option value="Bhojpuri">Bhojpuri</option>
+                        <option value="Punjabi">Punjabi</option>
+                        <option value="English">English</option>
+                    </select>
+                    <select name="reigion" id="">
+                        <option value="">Select Reigion</option>
+                        <option value="Hindu">Hindu</option>
+                        <option value="Muslim">Muslim</option>
+                        <option value="Christian">Christian</option>
+                        <option value="Sikhism">Sikhism</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <select name="gender" id="">
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                    <select name="state" id="">
+                        <option value="">Select State</option>
+                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                        <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                        <option value="Assam">Assam</option>
+                        <option value="Bihar">Bihar</option>
+                        <option value="Chandigarh">Chandigarh</option>
+                        <option value="Chhattisgarh">Chhattisgarh</option>
+                        <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                        <option value="Daman and Diu">Daman and Diu</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Lakshadweep">Lakshadweep</option>
+                        <option value="Puducherry">Puducherry</option>
+                        <option value="Goa">Goa</option>
+                        <option value="Gujarat">Gujarat</option>
+                        <option value="Haryana">Haryana</option>
+                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+                        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                        <option value="Jharkhand">Jharkhand</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Manipur">Manipur</option>
+                        <option value="Meghalaya">Meghalaya</option>
+                        <option value="Mizoram">Mizoram</option>
+                        <option value="Nagaland">Nagaland</option>
+                        <option value="Odisha">Odisha</option>
+                        <option value="Punjab">Punjab</option>
+                        <option value="Rajasthan">Rajasthan</option>
+                        <option value="Sikkim">Sikkim</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Telangana">Telangana</option>
+                        <option value="Tripura">Tripura</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option value="Uttarakhand">Uttarakhand</option>
+                        <option value="West Bengal">West Bengal</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <button type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <section class="couple">
+        <div class="recipe-card">
+            <img class="recipe-preview" src="static/couple1.png" alt="noodle"/>
+            <strong class="recipe-title">marriage couple</strong>
+            <span class="recipe-level">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque quisquam unde cupiditate, quidem nulla beatae libero sequi error ullam natus repudiandae illo dolorum dolorem nesciunt!</span>
+        </div>
+        <div class="recipe-card">
+            <img class="recipe-preview" src="static/couple3.png" alt="noodle"/>
+            <strong class="recipe-title">marriage couple</strong>
+            <span class="recipe-level">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque quisquam unde cupiditate, quidem nulla beatae libero sequi error ullam natus repudiandae illo dolorum dolorem nesciunt!</span>
+        </div>
+        <div class="recipe-card">
+            <img class="recipe-preview" src="static/couple2.png" alt="noodle"/>
+            <strong class="recipe-title">marriage couple</strong>
+            <span class="recipe-level">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque quisquam unde cupiditate, quidem nulla beatae libero sequi error ullam natus repudiandae illo dolorum dolorem nesciunt!</span>
+        </div>
+    </section>
+    {%include "layout/footer.html" %}
+</body>
+</html>

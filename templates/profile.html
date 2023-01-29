@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <title>Document</title>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Dancing+Script);
+
+        * {
+            margin: 0;
+        }
+
+        body {
+            background-color: #ff00001a;
+            font-family: Arial;
+        }
+
+        
+        .navbar-top {
+            margin-top: 65px;
+            background-color: #fff;
+            color: #333;
+            box-shadow: 0px 4px 8px 0px grey;
+            height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .title {
+            font-family: 'Dancing Script', cursive;
+            padding: 15px 40px;
+        }
+
+        .navbar-top ul {        
+            display: flex;
+            padding: 18px 50px 0 40px;
+        }
+
+        .navbar-top ul li a {
+            color: #333;
+            padding: 14px 16px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .client-page {
+            display: flex;
+        }
+
+
+        .sidenav {
+            background-color: #fff;
+            color: #333;
+            padding-top: 20px;
+            width: 250px;
+        }
+
+        .client {
+            margin-bottom: 20px;
+            margin-top: -12px;
+            text-align: center;
+        }
+
+        .client img {
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0px 0px 5px 1px grey;
+        }
+
+        .name {
+            font-size: 20px;
+            font-weight: bold;
+            padding-top: 20px;
+        }
+
+        .job {
+            font-size: 16px;
+            font-weight: bold;
+            padding-top: 10px;
+        }
+
+        .url, hr {
+            text-align: center;
+        }
+
+        .url hr {
+            margin-left: 20%;
+            width: 60%;
+        }
+
+        .url a {
+            color: #818181;
+            display: block;
+            font-size: 20px;
+            margin: 10px 0;
+            padding: 6px 8px;
+            text-decoration: none;
+        }
+
+        .url a:hover, .url .active {
+            background-color: #ff00001a;
+            border-radius: 28px;
+            color: #000;
+            margin-left: 14%;
+            width: 65%;
+        }
+
+        /* End */
+
+        /* Main */
+        .main {
+            margin: 20px auto;
+            font-size: 28px;
+            padding: 0 10px;
+            width: 58%;
+        }
+
+        .main h2 {
+            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .main .card {
+            background-color: #fff;
+            border-radius: 18px;
+            box-shadow: 1px 1px 8px 0 grey;
+            height: auto;
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        .main .card table {
+            border: none;
+            font-size: 16px;
+            height: 270px;
+            width: 80%;
+        }
+
+        .edit {
+            text-align: right;
+            color: #e7e7e8;
+            width: 100%;
+        }
+
+        .social-media {
+            text-align: center;
+            width: 90%;
+        }
+
+        .social-media span {
+            margin: 0 10px;
+        }
+
+        .fa-facebook:hover {
+            color: #4267b3 !important;
+        }
+
+        .fa-twitter:hover {
+            color: #1da1f2 !important;
+        }
+
+        .fa-instagram:hover {
+            color: #ce2b94 !important;
+        }
+
+        .fa-invision:hover {
+            color: #f83263 !important;
+        }
+
+        .fa-github:hover {
+            color: #161414 !important;
+        }
+
+        .fa-whatsapp:hover {
+            color: #25d366 !important;
+        }
+
+        .fa-snapchat:hover {
+            color: #fffb01 !important;
+        }
+
+        .hidden{
+            display: none;
+        }
+
+        .field {
+            width: 400px;
+            display: flex;
+            justify-content: space-between;
+            margin: 10px;
+        }
+
+        table td {
+            padding: 10px 5px;
+        }
+
+        form {
+            display: table;
+            margin: auto;
+        }
+
+        .field button {
+            min-width: 135px;
+            background-color: #fd5b5d;
+            border: 0;
+            border-radius: 4px;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: .25px;
+            line-height: 20px;
+            padding: 8px 24px;
+            text-align: center;
+            text-decoration: none;
+            margin: 10px auto;
+        }
+
+        .field label {
+            font-size: 15px;
+        }
+
+        .field input,
+        .field select{
+            padding: 7px;
+            border: 2px solid #d6d6d682;
+            width: 250px;
+        }
+
+        @media screen and (max-width: 650px) {
+            .navbar-top ul {
+                display: flex;
+                align-items: center;
+                padding: 0;
+                font-size: 10px;
+            }
+
+            .main {
+                padding: 0;
+                width: 95%;
+            }
+            .client-page {
+                flex-direction: column;
+            }
+            .sidenav {
+                width: 100%;
+            }
+
+            .main .card {
+                overflow: hidden;
+                padding: 10px;
+            }
+
+            .field {
+                width: 100%;
+            }
+
+            .field input, .field select {
+                width: 70%;
+            }
+        }
+
+        .cardarea {
+            width: 350px;
+            height: 500px;
+            background: white;
+            position: absolute;
+            right: 0;
+        }
+
+        .cardarea a {
+            float: right;
+            padding: 10px;
+            margin-right: 15px;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        .cardarea .person {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            padding: 5px;
+            margin: 20px 0;
+        }
+
+        .cardarea .detail {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .cardarea .detail img {
+            object-fit: cover;
+            margin-right: 10px;
+            border-radius: 50%;
+            box-shadow: 0px 0px 5px 1px grey;
+        }
+
+        .cardarea button {
+            padding: 10px 12px;
+            background: #00bac1;
+            font-size: 15px;
+            color: white;
+            border: 1px solid;
+            cursor: pointer;
+            border-radius: 15px;
+        }
+
+    </style>
+</head>
+<body>
+    {%include "layout/navbar.html"%}
+
+
+    <div class="navbar-top">
+        <div class="title">
+            <h1>Profile</h1>
+        </div>
+        <ul>
+            <li>
+                <a id="friendrequest">
+                    <i class="fa fa-user-plus fa-2x"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#notification">
+                    <i class="fa fa-bell fa-2x"></i>
+                </a>
+            </li>
+            <li>
+                <a href="/logout">
+                    <i class="fa fa-sign-out-alt fa-2x"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="cardarea hidden">
+        <a id="closefriend">
+            <i class="fa fa-times"></i>
+        </a>
+        <div class="requestlist">
+            {% for person in friend %}
+            <div class="person" id="{{person.username}}">
+                <div class="detail">
+                    <img src="{{person.image}}" width="50px" height="50px" alt="">
+                    <div class="txt">
+                        <h3>{{person.name}}</h3>
+                        <p>@{{person.username}}</p>
+                    </div>
+                </div>
+                <div class="accept">
+                    <button id="accept" aria-hidden="{{person.username}}">Confirm</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="client-page">
+        <div class="sidenav">
+            <div class="client">
+                <img src="{{data.image}}" alt="" width="150" height="150">
+    
+                <div class="name">
+                    {{data.name}}
+                </div>
+                <div class="job">
+                    {{data.occupation}}
+                </div>
+            </div>
+    
+            <div class="sidenav-url">
+                <div class="url">
+                    <a class="active" id="client">Profile</a>
+                    <hr align="center">
+                </div>
+                <div class="url">
+                    <a id="settings">Edit</a>
+                    <hr align="center">
+                </div>
+            </div>
+        </div>
+        <!-- End -->
+    
+        <!-- Main -->
+        <div class="main">
+            <h2>Profile</h2>
+            <div class="card">
+                <div class="card-body " id="details">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Name</td>
+                                <td>:</td>
+                                <td>{{data.name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Age</td>
+                                <td>:</td>
+                                <td>{{data.age}}</td>
+                            </tr>
+                            <tr>
+                                <td>Gender</td>
+                                <td>:</td>
+                                <td>{{data.gender}}</td>
+                            </tr>
+                            <tr>
+                                <td>Username</td>
+                                <td>:</td>
+                                <td>{{data.username}}</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>:</td>
+                                <td>{{data.email}}</td>
+                            </tr>
+                            <tr>
+                                <td>Education</td>
+                                <td>:</td>
+                                <td>{{data.education}}</td>
+                            </tr>                            
+                            <tr>
+                                <td>Occupation</td>
+                                <td>:</td>
+                                <td>{{data.occupation}}</td>
+                            </tr>
+                            <tr>
+                                <td>Phone no</td>
+                                <td>:</td>
+                                <td>{{data.phone}}</td>
+                            </tr>
+                            <tr>
+                                <td>Reigion</td>
+                                <td>:</td>
+                                <td>{{data.reigion}}</td>
+                            </tr>
+                            <tr>
+                                <td>Mothertoug</td>
+                                <td>:</td>
+                                <td>{{data.mothertoug}}</td>
+                            </tr>
+                            <tr>
+                                <td>Address</td>
+                                <td>:</td>
+                                <td>{{data.city}}, {{data.state}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-body hidden" id="editdetails">
+                    <form action="editprofile" method="post">
+                        {% csrf_token %}
+                        <div class="field">
+                            <label for="">Name </label>
+                            <input type="text" name="name" value="{{data.name}}">
+                        </div>
+                        <div class="field">
+                            <label for="">Age </label>
+                            <input type="text" name="age" value="{{data.age}}">
+                        </div>
+                        <div class="field">
+                            <label for="">Gender </label>
+                            <select name="gender">
+                                <option value="{{data.gender}}">{{data.gender}}</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="">Email </label>
+                            <input type="text" name="email" value="{{data.email}}">
+                        </div>
+                        <div class="field">
+                            <label for="">Phone no </label>
+                            <input type="text" name="phone" value="{{data.phone}}">
+                        </div>
+                        <div class="field">
+                            <label for="">Education </label>
+                            <input type="text" name="education" value="{{data.education}}">
+                        </div>
+                        <div class="field">
+                            <label for="">Occupation</label>
+                            <input type="text" name="occupation" value="{{data.occupation}}">
+                        </div>
+                        <div class="field">
+                            <label for="">Reigion</label>
+                            <select name="reigion" id="">
+                                <option value="{{data.reigion}}">{{data.reigion}}</option>
+                                <option value="Hindu" default>Hindu</option>
+                                <option value="Islam" default>Islam</option>
+                                <option value="Christian" default>Christian</option>
+                                <option value="Sikhism" default>Sikhism</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="">Mothertoug</label>
+                            <select name="mothertoug" id="">
+                                <option value="{{data.mothertoug}}">{{data.mothertoug}}</option>
+                                <option value="Hindi" default>Hindi</option>
+                                <option value="English" default>English</option>
+                                <option value="Bhojpuri" default>Bhojpuri</option>
+                                <option value="Punjabi" default>Punjabi</option>
+                                <option value="Garhwali" default>Garhwali</option>
+                                <option value="Marathi" default>Marathi</option>
+                                <option value="Bangali" default>Bangali</option>
+                                <option value="Odia" default>Odia</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="">City</label>
+                            <input type="text" name="city" value="{{data.city}}">
+                        </div>
+                        <div class="field">
+                            <label for="">State</label>
+                            <select name="state" id="state">
+                                <option value="{{data.state}}">{{data.state}}</option>
+                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                <option value="Assam">Assam</option>
+                                <option value="Bihar">Bihar</option>
+                                <option value="Chandigarh">Chandigarh</option>
+                                <option value="Chhattisgarh">Chhattisgarh</option>
+                                <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                                <option value="Daman and Diu">Daman and Diu</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Lakshadweep">Lakshadweep</option>
+                                <option value="Puducherry">Puducherry</option>
+                                <option value="Goa">Goa</option>
+                                <option value="Gujarat">Gujarat</option>
+                                <option value="Haryana">Haryana</option>
+                                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                <option value="Jharkhand">Jharkhand</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Kerala">Kerala</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Manipur">Manipur</option>
+                                <option value="Meghalaya">Meghalaya</option>
+                                <option value="Mizoram">Mizoram</option>
+                                <option value="Nagaland">Nagaland</option>
+                                <option value="Odisha">Odisha</option>
+                                <option value="Punjab">Punjab</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Sikkim">Sikkim</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Telangana">Telangana</option>
+                                <option value="Tripura">Tripura</option>
+                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                <option value="Uttarakhand">Uttarakhand</option>
+                                <option value="West Bengal">West Bengal</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <button type="submit">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {%include "layout/footer.html"%}
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            $("#settings").click(function(){
+                $("#details").addClass("hidden");
+                $("#settings").addClass("active");
+                $("#client").removeClass("active");
+                $("#editdetails").removeClass("hidden");
+            });
+            
+            $("#friendrequest").click(function(){
+                $(".cardarea").removeClass("hidden");
+            });
+
+            $("#closefriend").click(function(){
+                $(".cardarea").addClass("hidden");
+            });
+
+            $("#accept").click(function(){
+                var username = $(this).attr('aria-hidden');
+                $.ajax({
+                    url: "{% url 'acceptFriend' %}",
+                    data: {'username' : username},
+                    dataType: "json", 
+                    success: function(result) {
+                      if(result.is_taken){
+                        $("#"+username).remove();
+                      }
+                  }
+                });
+              });
+
+        });
+    </script>
+</body>
+</html>
