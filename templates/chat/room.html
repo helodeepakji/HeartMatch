@@ -42,6 +42,12 @@
         margin: 2px 10px;
         border-radius: 50%;
     }
+
+    .headicon{
+      display:flex;
+      align-items : center;
+    }
+
     main {
       margin: auto;
       margin-top: 15vh;
@@ -99,12 +105,13 @@
       cursor: pointer;
       height: 30px;
       padding: 10px;
+      margin: 10px;
       background: white;
       border: 1px solid black;
       border-radius: 50%;
       align-items: center;
       justify-content: center;
-  }
+    }
 
     .chat-banner>div {
       padding: 10px;
@@ -204,24 +211,24 @@
     }
 
     /* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888;
-}
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+    }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
     
     @media screen and (min-width: 900px)
     {
@@ -284,7 +291,9 @@
                   </span>
                 </div>
                 <div><h2>{{touser.name}}</h2></div>
-                <div><i class='fas fa-info'></i></div>
+                <div class="headicon">
+                  <a id="videocall" href="../../videocall/{{room_name}}"> <i class="fas fa-video"></i> </a>
+                  <i class='fas fa-info'></i></div>
               </div>
               <div class="chatmsg" id="chatmsg">
                   {% for massage in chat %}
@@ -318,14 +327,13 @@
         chatSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
             const sender = data.user;
+
             if(sender != "{{user}}"){
               document.getElementById("chatmsg").innerHTML += '<div class="sender">'+data.message+'</div>';
             }else{
               document.getElementById("chatmsg").innerHTML += '<div class="receiver">'+data.message+'</div>';
             }
-              
-           
-            //document.querySelector('#chat-log').value += (data.message + '\n');
+            
         };
 
         chatSocket.onclose = function(e) {
@@ -349,6 +357,14 @@
             }
             messageInputDom.value = '';
         };
+
+        
+        document.querySelector('#videocall').onclick = function(e) {
+          chatSocket.send(JSON.stringify({
+            'message': "videocall by {{room_name}}"
+          }));
+        }
+
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

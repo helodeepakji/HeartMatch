@@ -26,14 +26,20 @@ class ChatConsumer(AsyncWebsocketConsumer):
         if self.scope['user'].is_authenticated:
             text_data_json = json.loads(text_data)
             message = text_data_json["message"]
-            user = str(self.scope['user'])
             room_name = self.scope['url_route']['kwargs']['room_name']
-            chat = Chat(username=user,chat=message,room = room_name,datetime=datetime.datetime.now())
-            await sync_to_async(chat.save)()
-            # Send message to room group
-            await self.channel_layer.group_send(
-                self.room_group_name, {"type": "chat_message", "message": message ,"user" : user}
-            )
+            user = str(self.scope['user'])
+            if(message == "videocall by "+room_name):
+                print("videocall by "+user)
+                await self.channel_layer.group_send(
+                    self.room_group_name, {"type": "chat_message", "message": "videocall by "+user ,"user" : user}
+                )
+            else:
+                chat = Chat(username=user,chat=message,room = room_name,datetime=datetime.datetime.now())
+                await sync_to_async(chat.save)()
+                # Send message to room group
+                await self.channel_layer.group_send(
+                    self.room_group_name, {"type": "chat_message", "message": message ,"user" : user}
+                )
 
     # Receive message from room group
     async def chat_message(self, event):
