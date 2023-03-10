@@ -260,6 +260,48 @@
 </head>
 <body>
       {%include "../layout/navbar.html"%}
+      <style>
+        .callnotify {
+          position: absolute;
+          width: 300px;
+          height: 200px;
+          background: #e3e3e3;
+          border-radius: 20px;
+          text-align: center;
+          padding: 20px;
+          left: 50px;
+          display: grid;
+          align-items: center;
+      }
+
+      .callnotify span{
+        font-family: cursive;
+        font-size: large;
+      }
+
+      .btn button {
+        padding: 10px 12px;
+        margin: 5px;
+        border: none;
+        border-radius: 10px;
+        font-size: 15px;
+        background: #0aa40a;
+        color: white;
+        cursor: pointer;
+    }
+
+    .hidden{
+      display:none;
+    }
+
+      </style>
+          <div id="callnotify" class="callnotify hidden">
+              <span id="callername">Videocall by helodeepakji</span>
+              <div class="btn">
+                <button style="background: #d60101;" onclick="hiddenClass()">decline</button>
+                <a href="../../videocall/{{room_name}}"><button>receive</button></a>
+              </div>
+          </div>
           <main>
             <div class="preview">
               <div id="user-name">{{user}} <i class='fas fa-angle-down'></i></div>
@@ -328,11 +370,18 @@
             const data = JSON.parse(e.data);
             const sender = data.user;
 
-            if(sender != "{{user}}"){
-              document.getElementById("chatmsg").innerHTML += '<div class="sender">'+data.message+'</div>';
+            if(data.message == "{{user}}"){
+              console.log(data.message);
+              document.getElementById("callername").innerHTML = data.message;
+              document.getElementById("callnotify").classList.remove("hidden");
             }else{
-              document.getElementById("chatmsg").innerHTML += '<div class="receiver">'+data.message+'</div>';
+              if(sender != "{{user}}"){
+                document.getElementById("chatmsg").innerHTML += '<div class="sender">'+data.message+'</div>';
+              }else{
+                document.getElementById("chatmsg").innerHTML += '<div class="receiver">'+data.message+'</div>';
+              }
             }
+
             
         };
 
@@ -364,6 +413,11 @@
             'message': "videocall by {{room_name}}"
           }));
         }
+
+        function hiddenClass() {
+          document.getElementById("callnotify").classList.add("hidden");
+        }
+        
 
     </script>
 

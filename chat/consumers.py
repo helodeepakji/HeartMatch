@@ -30,15 +30,40 @@ class ChatConsumer(AsyncWebsocketConsumer):
             user = str(self.scope['user'])
             if(message == "videocall by "+room_name):
                 print("videocall by "+user)
+                n = len(str(user))
+                print(n)
+                print(room_name)
+
+                touser = room_name[:-n]
+                exuser = room_name[n:]
+
+                print(touser)
+                print(exuser)
+
+                if str(user) == str(room_name[len(touser):]):
+                    exuser = str(room_name[len(touser):])
+                    touser = str(room_name[:-len(user)])
+                    print(touser)
+                    print(exuser)
+
+                if str(user) == str(room_name[:-len(touser)]):
+                    exuser = str(room_name[:-len(touser)])
+                    touser = str(room_name[len(user):])
+                    print(touser)
+                    print(exuser)
+
                 await self.channel_layer.group_send(
-                    self.room_group_name, {"type": "chat_message", "message": "videocall by "+user ,"user" : user}
+                    self.room_group_name, {"type": "chat_message",
+                                        "message": touser, "user": user}
                 )
             else:
-                chat = Chat(username=user,chat=message,room = room_name,datetime=datetime.datetime.now())
+                chat = Chat(username=user, chat=message,
+                            room=room_name, datetime=datetime.datetime.now())
                 await sync_to_async(chat.save)()
                 # Send message to room group
                 await self.channel_layer.group_send(
-                    self.room_group_name, {"type": "chat_message", "message": message ,"user" : user}
+                    self.room_group_name, {
+                        "type": "chat_message", "message": message, "user": user}
                 )
 
     # Receive message from room group
@@ -47,4 +72,4 @@ class ChatConsumer(AsyncWebsocketConsumer):
         user = event["user"]
 
         # Send message to WebSocket
-        await self.send(text_data=json.dumps({"message": message,"user":user}))
+        await self.send(text_data=json.dumps({"message": message, "user": user}))
