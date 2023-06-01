@@ -2,6 +2,7 @@
 # HeartMatch - The Matrimonial Site
 
 This Site created by using Django framework with Sqllite database and as frontend we use HTML, CSS , JavaScript, etc. 
+Webrtc for video call and Websockets for chat
 
 
 
